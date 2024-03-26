@@ -1,0 +1,1 @@
+sveltekit crud 익히기를 위한 간단한 게시판 예제
