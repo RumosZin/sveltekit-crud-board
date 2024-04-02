@@ -1,4 +1,3 @@
-// src/routes/auth/callback/+server.js
 import { redirect } from '@sveltejs/kit'
 
 export const GET = async ({ url, locals: { supabase } }) => {
@@ -8,5 +7,5 @@ export const GET = async ({ url, locals: { supabase } }) => {
     await supabase.auth.exchangeCodeForSession(code)
   }
 
-  throw redirect(303, '/account')
+  redirect(303, '/')
 }
