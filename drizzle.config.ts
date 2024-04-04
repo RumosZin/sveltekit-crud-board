@@ -1,11 +1,16 @@
+// drizzle.config.ts
 import type { Config } from 'drizzle-kit';
-import { env } from '$env/static/private';
-
+import * as dotenv from 'dotenv';
+dotenv.config();
+const { DATABASE_URL } = process.env;
+if (!DATABASE_URL) {
+ throw new Error('No url');
+}
 export default {
-	schema: './src/lib/server/schema.ts',
-	out: './drizzle',
-	driver: 'pg', // 'pg' | 'mysql2' | 'better-sqlite' | 'libsql' | 'turso'
-	dbCredentials: {
-		connectionString: process.env.DATABASE_URL,
-	}
+ schema: './src/lib/server/schema.ts',
+ out: './migrations',
+ driver: 'pg',
+ dbCredentials: {
+  connectionString: DATABASE_URL
+ }
 } satisfies Config;
